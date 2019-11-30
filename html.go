@@ -518,9 +518,14 @@ func (options *Html) Image(out *bytes.Buffer, link []byte, title []byte, alt []b
 		return
 	}
 
-	out.WriteString("<img src=\"")
+	out.WriteString("<a target=\"_blank\" href=\"")
 	options.maybeWriteAbsolutePrefix(out, link)
 	attrEscape(out, link)
+
+	out.WriteString("\"><img src=\"")
+	options.maybeWriteAbsolutePrefix(out, link)
+	attrEscape(out, link)
+
 	out.WriteString("\" alt=\"")
 	if len(alt) > 0 {
 		attrEscape(out, alt)
@@ -533,6 +538,7 @@ func (options *Html) Image(out *bytes.Buffer, link []byte, title []byte, alt []b
 	out.WriteByte('"')
 	out.WriteString("height=\"500\"")
 	out.WriteString(options.closeTag)
+	out.WriteString("</a>")
 }
 
 func (options *Html) LineBreak(out *bytes.Buffer) {
