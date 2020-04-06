@@ -536,7 +536,7 @@ func (options *Html) Image(out *bytes.Buffer, link []byte, title []byte, alt []b
 	}
 
 	out.WriteByte('"')
-	out.WriteString("height=\"500\"")
+	out.WriteString("max-height=\"500\"")
 	out.WriteString(options.closeTag)
 	out.WriteString("</a>")
 }
